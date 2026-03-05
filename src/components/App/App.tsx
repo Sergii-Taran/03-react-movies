@@ -10,7 +10,7 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import MovieModal from '../MovieModal/MovieModal';
 
-import './App.module.css';
+import css from './App.module.css';
 
 export default function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -51,7 +51,7 @@ export default function App() {
   }, [query]);
 
   return (
-    <>
+    <div className={css.app}>
       <SearchBar onSubmit={handleSearch} />
 
       {isLoading && <Loader />}
@@ -68,6 +68,6 @@ export default function App() {
           onClose={() => setSelectedMovie(null)}
         />
       )}
-    </>
+    </div>
   );
 }

@@ -11,7 +11,6 @@ interface MovieModalProps {
 const modalRoot = document.getElementById('modal-root') as HTMLElement;
 
 export default function MovieModal({ movie, onClose }: MovieModalProps) {
-  // Закриття по ESC
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -21,7 +20,6 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
 
     window.addEventListener('keydown', handleEsc);
 
-    // Забороняємо скрол
     document.body.style.overflow = 'hidden';
 
     return () => {
@@ -30,7 +28,6 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
     };
   }, [onClose]);
 
-  // Закриття по кліку на backdrop
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -39,7 +36,7 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
 
   const imageUrl = movie.backdrop_path
     ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-    : '';
+    : `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return createPortal(
     <div
