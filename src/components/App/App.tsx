@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { fetchMovies } from '../../services/movieService';
-import { Movie } from '../../types/movie';
+import type { Movie } from '../../types/movie';
 
 import SearchBar from '../SearchBar/SearchBar';
 import MovieGrid from '../MovieGrid/MovieGrid';
@@ -29,10 +29,10 @@ export default function App() {
     if (!query) return;
 
     const getMovies = async () => {
-      try {
-        setIsLoading(true);
-        setError(false);
+      setIsLoading(true);
+      setError(false);
 
+      try {
         const data = await fetchMovies(query);
 
         if (data.results.length === 0) {
